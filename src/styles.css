@@ -25,3 +25,7 @@
   svg rect{
     fill: black;
   }
+
+  .text-grey{
+    color: grey
+  }
