@@ -1,3 +1,4 @@
+import { ProductService } from '../../services/product/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component } from '@angular/core';
 
@@ -7,9 +8,14 @@ import { Component } from '@angular/core';
 })
 export class PortafolioItemComponent {
 
-  constructor(private activatedRoute:ActivatedRoute){
+  product:any = undefined
+
+  constructor(private activatedRoute:ActivatedRoute,
+              private _ps:ProductService){
     activatedRoute.params.subscribe(params=>{
-      console.log(params);
+      _ps.loadProduct(params['id']).subscribe(data=>{
+        this.product = data.json();
+      });
     });
   }
 

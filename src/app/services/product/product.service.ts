@@ -22,4 +22,8 @@ export class ProductService {
     }
   }
 
+  public loadProduct(productCod:string) {
+    return this.http.get(`https://tutorialangular4.firebaseio.com/productos/${productCod}.json`);
+  }
+
 }
