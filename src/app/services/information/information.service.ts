@@ -11,24 +11,28 @@ export class InformationService {
   isTeamLoaded:boolean = false;
 
   constructor(private http:Http) {
-    if (this.info != {}) {this.loadInfo();}
-    if (this.team != []) {this.loadTeam();}
+    this.loadInfo();
+    this.loadTeam();
    }
 
    private loadInfo(){
-    this.http.get("assets/data/info.page.json")
-    .subscribe(data=>{
-      this.info = data.json();
-      this.isInfoLoaded = true;
-    });
+     if (this.info.title === undefined){
+      this.http.get("assets/data/info.page.json")
+      .subscribe(data=>{
+        this.info = data.json();
+        this.isInfoLoaded = true;
+      });
+    }
    }
 
    private loadTeam(){
-    this.http.get("https://tutorialangular4.firebaseio.com/equipo.json")
-    .subscribe(data=>{
-      this.team = data.json();
-      this.isTeamLoaded = true;
-    });
+     if (this.team.length === 0) {
+      this.http.get("https://tutorialangular4.firebaseio.com/equipo.json")
+      .subscribe(data=>{
+        this.team = data.json();
+        this.isTeamLoaded = true;
+      });
+     }
    }
 
 }

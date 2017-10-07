@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class ProductService {
 
   products:any[] = []
-  loading:boolean = true;
+  areProductsLoaded:boolean = false;
 
   constructor(private http:Http) { 
     this.loadProducts();
@@ -17,7 +17,7 @@ export class ProductService {
       this.http.get("https://tutorialangular4.firebaseio.com/productos_idx.json")
       .subscribe(data=>{
         this.products = data.json();
-        this.loading = false;
+        this.areProductsLoaded = true;
       });
     }
   }
