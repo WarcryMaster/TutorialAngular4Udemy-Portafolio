@@ -6,13 +6,13 @@ import { Http } from "@angular/http";
 export class InformationService {
 
   info:any = {};
-  about:any = {};
+  team:any[] = [];
   isInfoLoaded:boolean = false;
-  isAboutLoaded:boolean = false;
-  team:any = [];
+  isTeamLoaded:boolean = false;
 
   constructor(public http:Http) {
     this.loadInfo();
+    this.loadTeam();
    }
 
    public loadInfo(){
@@ -23,11 +23,11 @@ export class InformationService {
     });
    }
 
-   public loadAbout(){
+   public loadTeam(){
     this.http.get("https://tutorialangular4.firebaseio.com/equipo.json")
     .subscribe(data=>{
-      this.about = data;
-      this.isAboutLoaded = true;
+      this.team = data.json();
+      this.isTeamLoaded = true;
     });
    }
 
