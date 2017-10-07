@@ -16,7 +16,6 @@ export class ProductService {
     if (this.products.length === 0) {
       this.http.get("https://tutorialangular4.firebaseio.com/productos_idx.json")
       .subscribe(data=>{
-        console.log(data.json());
         this.products = data.json();
         this.loading = false;
       });
