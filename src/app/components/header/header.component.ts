@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { InformationService } from '../../services/information/information.service';
 import { Component } from '@angular/core';
 
@@ -7,5 +8,12 @@ import { Component } from '@angular/core';
 })
 
 export class HeaderComponent {
-  constructor(public _is:InformationService){}
+
+  constructor(public _is:InformationService,
+              private router:Router){}
+
+  public searchProduct(text:string){
+    this.router.navigate(['search', text]);
+  }
+
 }
