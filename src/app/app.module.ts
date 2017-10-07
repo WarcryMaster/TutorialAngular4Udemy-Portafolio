@@ -14,7 +14,8 @@ import { AboutComponent } from './components/about/about.component';
 import { PortafolioItemComponent } from './components/portafolio-item/portafolio-item.component';
 
 // Servicios
-import { InformationService } from "./service/information.service";
+import { InformationService } from "./services/information/information.service";
+import { ProductService } from "./services/product/product.service";
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { InformationService } from "./service/information.service";
     HttpModule
   ],
   providers: [
-    InformationService
+    InformationService,
+    ProductService
   ],
   bootstrap: [AppComponent]
 })

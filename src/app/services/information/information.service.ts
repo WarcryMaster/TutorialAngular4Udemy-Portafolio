@@ -10,12 +10,12 @@ export class InformationService {
   isInfoLoaded:boolean = false;
   isTeamLoaded:boolean = false;
 
-  constructor(public http:Http) {
-    this.loadInfo();
-    this.loadTeam();
+  constructor(private http:Http) {
+    if (this.info != {}) {this.loadInfo();}
+    if (this.team != []) {this.loadTeam();}
    }
 
-   public loadInfo(){
+   private loadInfo(){
     this.http.get("assets/data/info.page.json")
     .subscribe(data=>{
       this.info = data.json();
@@ -23,7 +23,7 @@ export class InformationService {
     });
    }
 
-   public loadTeam(){
+   private loadTeam(){
     this.http.get("https://tutorialangular4.firebaseio.com/equipo.json")
     .subscribe(data=>{
       this.team = data.json();
