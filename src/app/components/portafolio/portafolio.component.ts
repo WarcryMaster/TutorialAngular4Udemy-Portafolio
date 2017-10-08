@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
 })
 export class PortafolioComponent {
 
-  constructor(private _ps:ProductService){}
+  constructor(public _ps:ProductService){}
 
 }
