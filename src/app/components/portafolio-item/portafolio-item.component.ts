@@ -13,10 +13,12 @@ export class PortafolioItemComponent {
 
   constructor(private activatedRoute:ActivatedRoute,
               private _ps:ProductService){
-    activatedRoute.params.subscribe(params=>{
-      this.cod = params['id'];
-      this._ps.loadProduct(this.cod).subscribe(data=>{
-        this.product = data.json();
+    activatedRoute.params.subscribe(
+      params=>{
+        this.cod = params['id'];
+        this._ps.loadProduct(this.cod).subscribe(
+          data=>{
+          this.product = data.json();
       });
     });
   }

@@ -1,3 +1,5 @@
+import { ActivatedRoute } from '@angular/router';
+import { ProductService } from '../../services/product/product.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -9,8 +11,11 @@ export class SearchComponent {
 
   text:string = undefined
 
-  constructor() {
-    
+  constructor(public _ps:ProductService,
+              private activatedRoute:ActivatedRoute) {
+    activatedRoute.params.subscribe(
+      params=>{this._ps.loadFilteredProducts(params['text']);}
+    );
    }
 
 }

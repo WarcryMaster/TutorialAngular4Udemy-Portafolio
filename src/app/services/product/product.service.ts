@@ -5,7 +5,8 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ProductService {
 
-  products:any[] = []
+  products:Product[] = []
+  filteredProducts:Product[] = []
   areProductsLoaded:boolean = false;
 
   constructor(private http:Http) { 
@@ -22,8 +23,15 @@ export class ProductService {
     }
   }
 
+  public loadFilteredProducts(text:string){
+    if (this.products.length > 0){
+      this.filteredProducts = this.products.filter(product=>{
+        return product.categoria.toLowerCase().includes(text.toLowerCase()) || product.titulo.toLowerCase().includes(text.toLowerCase());
+      });
+    }
+  }
+
   public loadProduct(productCod:string) {
     return this.http.get(`https://tutorialangular4.firebaseio.com/productos/${productCod}.json`);
   }
-
 }
